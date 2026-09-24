@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ruang Anggaran Sumpah Pemuda</title>
     <meta name="description" content="Dashboard anggaran dan laporan Sumpah Pemuda" />
+    <title>Ruang Anggaran Sumpah Pemuda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <nav class="nav-menu">
+        <nav class="nav-menu" aria-label="Navigasi utama">
           <p class="nav-label">Menu utama</p>
           <a class="nav-item active" href="#dashboard"><span>▦</span> Dashboard</a>
           <a class="nav-item" href="#rab"><span>▤</span> RAB</a>
@@ -66,7 +66,7 @@
           </div>
         </section>
 
-        <section class="stats-grid">
+        <section class="stats-grid" aria-label="Ringkasan anggaran">
           <article class="stat-card accent-blue">
             <div class="stat-top"><span>Total anggaran</span><div class="stat-icon">◫</div></div>
             <strong id="totalBudget">Rp0</strong>
@@ -98,7 +98,11 @@
             </div>
             <div class="chart-wrap">
               <div class="y-axis">
-                <span>60 jt</span><span>45 jt</span><span>30 jt</span><span>15 jt</span><span>0</span>
+                <span>60 jt</span>
+                <span>45 jt</span>
+                <span>30 jt</span>
+                <span>15 jt</span>
+                <span>0</span>
               </div>
               <div class="bar-chart">
                 <div class="grid-line line-1"></div>
@@ -106,14 +110,19 @@
                 <div class="grid-line line-3"></div>
                 <div class="grid-line line-4"></div>
                 <div class="chart-bars" id="chartBars"></div>
-                <div class="x-axis"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mei</span><span>Jun</span><span>Jul</span><span>Ags</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Des</span></div>
+                <div class="x-axis">
+                  <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mei</span><span>Jun</span>
+                  <span>Jul</span><span>Ags</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Des</span>
+                </div>
               </div>
             </div>
             <div class="chart-legend"><span><i class="legend-dot budget"></i> Anggaran</span><span><i class="legend-dot realization"></i> Realisasi</span></div>
           </article>
 
           <article class="panel category-panel">
-            <div class="panel-heading"><div><h2>Anggaran per divisi</h2><p class="muted">Distribusi tanggung jawab dana</p></div></div>
+            <div class="panel-heading">
+              <div><h2>Anggaran per divisi</h2><p class="muted">Distribusi tanggung jawab dana</p></div>
+            </div>
             <div class="donut-area">
               <div class="donut"><div><strong id="donutPercent">0%</strong><span>terpakai</span></div></div>
               <div class="category-legend" id="categoryLegend"></div>
@@ -124,18 +133,21 @@
 
         <section class="panel table-panel" id="rab">
           <div class="panel-heading table-heading">
-            <div><h2>Rincian anggaran</h2><p class="muted">Setiap item terhubung dengan divisi yang memegang tugas.</p></div>
+            <div><h2>Rincian anggaran</h2><p class="muted">Setiap item terhubung dengan divisi penanggung jawab.</p></div>
             <button class="btn btn-outline small" id="addTableBtn">＋ Tambah item</button>
           </div>
-
           <div class="table-toolbar">
             <div class="search-box">⌕<input id="searchInput" type="search" placeholder="Cari nama anggaran..." /></div>
             <select id="divisionFilter" class="filter-select"><option value="all">Semua divisi</option></select>
-            <select id="statusFilter" class="filter-select"><option value="all">Semua status</option><option>Lunas</option><option>DP</option><option>Belum dibayar</option></select>
+            <select id="statusFilter" class="filter-select">
+              <option value="all">Semua status</option>
+              <option>Lunas</option>
+              <option>DP</option>
+              <option>Belum dibayar</option>
+            </select>
             <button class="filter-button" id="resetFilter">↻ Reset</button>
             <button class="filter-button" id="exportBtn">⇩ CSV</button>
           </div>
-
           <div class="table-scroll">
             <table>
               <thead>
@@ -152,21 +164,15 @@
               <tbody id="budgetTable"></tbody>
             </table>
           </div>
-
-          <div class="table-footer"><span id="tableCount">Menampilkan 0 item</span><div class="pagination"><button disabled>‹</button><button class="current">1</button><button disabled>›</button></div></div>
-        </section>
-
-        <section class="panel team-panel" id="team">
-          <div class="panel-heading">
-            <div><h2>Struktur kepanitiaan</h2><p class="muted">Penanggung jawab kegiatan dan divisi pendukung.</p></div>
-            <button class="btn btn-outline small" id="teamPrintBtn">Cetak struktur</button>
+          <div class="table-footer">
+            <span id="tableCount">Menampilkan 0 item</span>
+            <div class="pagination"><button disabled>‹</button><button class="current">1</button><button disabled>›</button></div>
           </div>
-          <div class="team-grid" id="teamGrid"></div>
         </section>
 
         <section class="panel funding-panel" id="funding">
           <div class="panel-heading table-heading">
-            <div><h2>Pengajuan dana</h2><p class="muted">Daftar kebutuhan anggaran dari tiap divisi.</p></div>
+            <div><h2>Pengajuan dana</h2><p class="muted">Daftar kebutuhan dana dan status persetujuan.</p></div>
             <button class="btn btn-primary small" id="addRequestBtn">＋ Ajukan dana</button>
           </div>
           <div class="approval-summary" id="approvalSummary"></div>
@@ -188,33 +194,20 @@
           </div>
         </section>
 
-        <section class="panel report-panel" id="report">
+        <section class="panel team-panel" id="team">
           <div class="panel-heading table-heading">
-            <div><h2>Laporan pertanggungjawaban</h2><p class="muted">Ringkasan kebutuhan, penggunaan, dan pelaporan akhir.</p></div>
-            <button class="btn btn-primary small" id="reportBtn">Buat laporan</button>
+            <div><h2>Struktur kepanitiaan</h2><p class="muted">Penanggung jawab utama dan koordinator divisi.</p></div>
+            <button class="btn btn-outline small" id="teamEditBtn">✎ Edit struktur</button>
           </div>
-          <div class="report-grid" id="reportGrid"></div>
+          <div class="team-grid" id="teamGrid"></div>
         </section>
 
-        <section class="bottom-grid">
-          <article class="panel action-panel">
-            <div class="action-icon orange">▣</div>
-            <div>
-              <h3>Siapkan laporan pertanggungjawaban</h3>
-              <p class="muted">Buat ringkasan akhir kegiatan berbasis data aktual.</p>
-            </div>
-            <button class="btn btn-primary" id="reportBtn2">Buat laporan</button>
-          </article>
-
-          <article class="panel event-panel" id="profil">
-            <div class="panel-heading"><div><h2>Detail kegiatan</h2><p class="muted">Informasi singkat acara</p></div></div>
-            <div class="event-details">
-              <div><span>Tanggal pelaksanaan</span><strong>28 Oktober 2024</strong></div>
-              <div><span>Lokasi kegiatan</span><strong>Gedung Pemuda Nusantara</strong></div>
-              <div><span>Penanggung jawab</span><strong>Panitia Sumpah Pemuda</strong></div>
-              <div><span>Target peserta</span><strong>500 orang</strong></div>
-            </div>
-          </article>
+        <section class="panel report-panel" id="report">
+          <div class="panel-heading table-heading">
+            <div><h2>Laporan cepat</h2><p class="muted">Ringkasan status anggaran dan kebutuhan kerja.</p></div>
+            <button class="btn btn-primary small" id="reportBtn">Buat laporan</button>
+          </div>
+          <div class="report-summary" id="reportSummary"></div>
         </section>
 
         <footer class="site-footer">© 2024 Panitia Sumpah Pemuda <span>•</span> Transparan, akuntabel, dan berintegritas.</footer>
@@ -251,7 +244,7 @@
     <div class="modal-backdrop" id="fundingModalBackdrop">
       <div class="modal small-modal">
         <div class="modal-header">
-          <div><p class="eyebrow">PENGAJUAN DANA</p><h2>Ajukan dana baru</h2></div>
+          <div><p class="eyebrow">PENGAJUAN DANA</p><h2 id="fundingModalTitle">Ajukan dana baru</h2></div>
           <button class="close-modal" id="closeFundingModal">×</button>
         </div>
         <form id="fundingForm">
@@ -270,9 +263,30 @@
       </div>
     </div>
 
+    <div class="modal-backdrop" id="teamModalBackdrop">
+      <div class="modal small-modal">
+        <div class="modal-header">
+          <div><p class="eyebrow">KEPANITIAAN</p><h2>Edit struktur panitia</h2></div>
+          <button class="close-modal" id="closeTeamModal">×</button>
+        </div>
+        <form id="teamForm">
+          <input type="hidden" id="teamId" />
+          <label>Jabatan<input required id="teamRole" /></label>
+          <label>Nama pegawai<input required id="teamName" /></label>
+          <label>Ikon singkat<input required id="teamIcon" maxlength="2" placeholder="★" /></label>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-outline" id="cancelTeamModal">Batal</button>
+            <button class="btn btn-primary" type="submit">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div class="modal-backdrop" id="loginModalBackdrop">
       <div class="modal small-modal">
-        <div class="modal-header"><div><p class="eyebrow">LOGIN ADMIN</p><h2>Masuk ke panel</h2></div></div>
+        <div class="modal-header">
+          <div><p class="eyebrow">LOGIN ADMIN</p><h2>Masuk ke panel</h2></div>
+        </div>
         <form id="loginForm">
           <label>Username<input required id="loginUsername" value="admin" /></label>
           <label>Password<input required id="loginPassword" type="password" value="sumpahpemuda2024" /></label>
