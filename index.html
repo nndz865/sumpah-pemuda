@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dashboard anggaran kegiatan Sumpah Pemuda" />
+  <title>Ruang Anggaran — Sumpah Pemuda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">28</div>
+        <div><strong>Ruang Anggaran</strong><span>Sumpah Pemuda 2024</span></div>
+      </div>
+      <nav class="nav-menu" aria-label="Navigasi utama">
+        <p class="nav-label">Menu utama</p>
+        <a class="nav-item active" href="#dashboard"><span>▦</span> Dashboard</a>
+        <a class="nav-item" href="#rab"><span>▤</span> Rincian Anggaran</a>
+        <a class="nav-item" href="#realisasi"><span>◒</span> Realisasi Dana</a>
+        <a class="nav-item" href="#laporan"><span>▥</span> Laporan</a>
+        <p class="nav-label">Pengaturan</p>
+        <a class="nav-item" href="#profil"><span>◎</span> Profil Kegiatan</a>
+        <a class="nav-item" href="#pengaturan"><span>⚙</span> Pengaturan</a>
+      </nav>
+      <div class="sidebar-card">
+        <div class="mini-icon">✦</div>
+        <strong>Semangat Pemuda!</strong>
+        <p>“Bersatu kita teguh, bercerai kita runtuh.”</p>
+      </div>
+      <div class="sidebar-footer"><span class="status-dot"></span> Data tersimpan otomatis</div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <button class="icon-button menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+        <div class="breadcrumb"><span>Ruang Anggaran</span><b>/</b><strong>Dashboard</strong></div>
+        <div class="top-actions">
+          <button class="icon-button" id="themeToggle" aria-label="Ubah tema">☼</button>
+          <button class="icon-button notification" aria-label="Notifikasi">♧<i></i></button>
+          <div class="user-profile"><div class="avatar">AN</div><div><strong>Admin Panitia</strong><span>Administrator</span></div><b>⌄</b></div>
+        </div>
+      </header>
+
+      <section class="page-intro">
+        <div><p class="eyebrow">LAPORAN KEUANGAN KEGIATAN</p><h1>Halo, Admin Panitia <span>👋</span></h1><p class="muted">Pantau dan kelola anggaran kegiatan Sumpah Pemuda dengan mudah.</p></div>
+        <div class="intro-actions"><button class="btn btn-outline" id="printBtn">⤓ <span>Cetak laporan</span></button><button class="btn btn-primary" id="addTopBtn">＋ Tambah anggaran</button></div>
+      </section>
+
+      <section class="stats-grid" aria-label="Ringkasan anggaran">
+        <article class="stat-card accent-blue"><div class="stat-top"><span>Total anggaran</span><div class="stat-icon">◫</div></div><strong id="totalBudget">Rp0</strong><p><span class="trend positive">↗ 12,5%</span> dari periode lalu</p></article>
+        <article class="stat-card accent-orange"><div class="stat-top"><span>Realisasi dana</span><div class="stat-icon">◉</div></div><strong id="totalSpent">Rp0</strong><p><span class="trend positive">↗ 8,2%</span> dari bulan lalu</p></article>
+        <article class="stat-card accent-green"><div class="stat-top"><span>Sisa anggaran</span><div class="stat-icon">◈</div></div><strong id="totalRemaining">Rp0</strong><p><span class="trend neutral" id="remainingPercent">0%</span> masih tersedia</p></article>
+        <article class="stat-card accent-purple"><div class="stat-top"><span>Persentase terpakai</span><div class="stat-icon">◔</div></div><strong id="spentPercent">0%</strong><div class="progress"><i id="overallProgress"></i></div><p>Target penggunaan 85%</p></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel overview-panel"><div class="panel-heading"><div><h2>Ringkasan anggaran</h2><p class="muted">Perbandingan anggaran dan realisasi</p></div><select id="chartPeriod" class="select-small"><option>2024</option><option>2023</option></select></div><div class="chart-wrap"><div class="y-axis"><span>60 jt</span><span>45 jt</span><span>30 jt</span><span>15 jt</span><span>0</span></div><div class="bar-chart" id="barChart"><div class="grid-line line-1"></div><div class="grid-line line-2"></div><div class="grid-line line-3"></div><div class="grid-line line-4"></div><div class="chart-bars" id="chartBars"></div><div class="x-axis"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>Mei</span><span>Jun</span><span>Jul</span><span>Ags</span><span>Sep</span><span>Okt</span><span>Nov</span><span>Des</span></div></div></div><div class="chart-legend"><span><i class="legend-dot budget"></i> Anggaran</span><span><i class="legend-dot realization"></i> Realisasi</span><b>● Tahun berjalan</b></div></article>
+        <article class="panel category-panel"><div class="panel-heading"><div><h2>Anggaran per kategori</h2><p class="muted">Distribusi alokasi dana</p></div><button class="more-button">•••</button></div><div class="donut-area"><div class="donut" id="donutChart"><div><strong id="donutPercent">0%</strong><span>terpakai</span></div></div><div class="category-legend" id="categoryLegend"></div></div><button class="text-button" onclick="document.querySelector('#rab').scrollIntoView({behavior:'smooth'})">Lihat rincian lengkap →</button></article>
+      </section>
+
+      <section class="panel table-panel" id="rab"><div class="panel-heading table-heading"><div><h2>Rincian anggaran terbaru</h2><p class="muted">Daftar alokasi biaya kegiatan Sumpah Pemuda</p></div><button class="btn btn-outline small" id="addTableBtn">＋ Tambah item</button></div><div class="table-toolbar"><div class="search-box">⌕<input id="searchInput" type="search" placeholder="Cari nama anggaran..." /></div><select id="categoryFilter" class="filter-select"><option value="all">Semua kategori</option></select><select id="statusFilter" class="filter-select"><option value="all">Semua status</option><option value="Lunas">Lunas</option><option value="DP</option><option value="Belum dibayar">Belum dibayar</option></select><button class="filter-button" id="resetFilter">↻ Reset</button></div><div class="table-scroll"><table><thead><tr><th>Nama anggaran</th><th>Kategori</th><th>Volume</th><th>Harga satuan</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="budgetTable"></tbody></table></div><div class="table-footer"><span id="tableCount">Menampilkan 0 item</span><div class="pagination"><button disabled>‹</button><button class="current">1</button><button disabled>›</button></div></div></section>
+
+      <section class="bottom-grid" id="laporan"><article class="panel action-panel"><div class="action-icon orange">▣</div><div><h3>Siapkan laporan pertanggungjawaban</h3><p class="muted">Buat laporan lengkap berdasarkan data realisasi terbaru.</p></div><button class="btn btn-primary" id="reportBtn">Buat laporan</button></article><article class="panel event-panel" id="profil"><div class="panel-heading"><div><h2>Detail kegiatan</h2><p class="muted">Informasi singkat acara</p></div><button class="more-button">•••</button></div><div class="event-details"><div><span>Tanggal pelaksanaan</span><strong>28 Oktober 2024</strong></div><div><span>Lokasi kegiatan</span><strong>Gedung Pemuda Nusantara</strong></div><div><span>Penanggung jawab</span><strong>Panitia Sumpah Pemuda</strong></div></div></article></section>
+      <footer class="site-footer">© 2024 Panitia Sumpah Pemuda <span>•</span> Transparan, akuntabel, dan berintegritas.</footer>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-header"><div><p class="eyebrow">DATA ANGGARAN</p><h2 id="modalTitle">Tambah anggaran</h2></div><button class="close-modal" id="closeModal">×</button></div><form id="budgetForm"><input type="hidden" id="editId"><label>Nama anggaran<input required id="itemName" placeholder="Contoh: Sewa sound system"></label><div class="form-row"><label>Kategori<select required id="itemCategory"></select></label><label>Status<select required id="itemStatus"><option>Belum dibayar</option><option>DP</option><option>Lunas</option></select></label></div><div class="form-row"><label>Volume<input required min="1" type="number" id="itemVolume" placeholder="1"></label><label>Satuan<input required id="itemUnit" placeholder="paket"></label></div><label>Harga satuan (Rp)<input required min="0" type="number" id="itemPrice" placeholder="0"></label><label>Keterangan<textarea id="itemNote" rows="3" placeholder="Tambahkan keterangan..." ></textarea></label><div class="modal-actions"><button type="button" class="btn btn-outline" id="cancelModal">Batal</button><button class="btn btn-primary" type="submit">Simpan anggaran</button></div></form></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
